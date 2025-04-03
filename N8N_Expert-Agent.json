@@ -1,5 +1,5 @@
 {
-  "name": "N8N Expert",
+  "name": "My workflow 3",
   "nodes": [
     {
       "parameters": {
@@ -33,13 +33,13 @@
         },
         "options": {}
       },
-      "id": "f4a396a1-0e77-4ca8-9150-d27c4af2ee77",
+      "id": "939590d7-4ce4-4941-8f9c-987e6ec6afe4",
       "name": "Edit Fields",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        640,
-        640
+        900,
+        280
       ]
     },
     {
@@ -47,20 +47,14 @@
         "model": "text-embedding-3-small",
         "options": {}
       },
-      "id": "3f7da8d5-e9d3-4c0b-9648-f23cdfb0dbfa",
+      "id": "e35b12f8-3ff2-4988-8f3c-e0bfa65dd068",
       "name": "Embeddings OpenAI",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1,
       "position": [
-        1160,
-        820
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "05Q6PbnSdyEcu9Ze",
-          "name": "OpenAi account"
-        }
-      }
+        1420,
+        460
+      ]
     },
     {
       "parameters": {
@@ -75,13 +69,13 @@
         },
         "options": {}
       },
-      "id": "aad41c91-c6d6-48c3-9e43-346a5069c667",
+      "id": "8702cc7f-696d-48e6-9481-51a01e10cbef",
       "name": "Aggregate",
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1720,
-        640
+        1980,
+        280
       ]
     },
     {
@@ -89,20 +83,14 @@
         "model": "gpt-4o",
         "options": {}
       },
-      "id": "cf371ddb-1521-4e9c-813c-5e5c7fdbce44",
+      "id": "315ec32d-3a45-4f89-a87e-c575e320d8b2",
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [
-        1480,
-        560
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "05Q6PbnSdyEcu9Ze",
-          "name": "OpenAi account"
-        }
-      }
+        1740,
+        200
+      ]
     },
     {
       "parameters": {
@@ -112,21 +100,15 @@
         "filterType": "string",
         "filterString": "=workflow_id=in.{{ $json.query_string }}"
       },
-      "id": "16abcadb-db84-4be0-821d-725cd53ac196",
+      "id": "fb6f31f7-7c4e-4e38-8017-f9216122e4d4",
       "name": "Supabase",
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2340,
-        400
+        2600,
+        40
       ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "supabaseApi": {
-          "id": "hOLIm3Jeg9JcG616",
-          "name": "Prod Supabase account"
-        }
-      }
+      "alwaysOutputData": true
     },
     {
       "parameters": {
@@ -140,26 +122,26 @@
         },
         "options": {}
       },
-      "id": "1e00bcc2-ea78-4b35-8c81-2ee625c7d5a2",
+      "id": "b94ee0d4-d1d3-4b92-9df9-0da768b12687",
       "name": "Summarize",
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1,
       "position": [
-        1940,
-        400
+        2200,
+        40
       ]
     },
     {
       "parameters": {
         "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.query_string = $('Summarize').first().json.concatenated_workflow_ids.replaceAll(\"\\\"\", \"\").replaceAll(\"[\", \"(\").replaceAll(\"]\", \")\");\n}\n\nreturn $input.all();"
       },
-      "id": "64627fc4-d2e5-42d4-a0b5-3bcd931d24ab",
+      "id": "005f08be-350d-4904-a0cd-d4742328245f",
       "name": "Code",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2140,
-        640
+        2400,
+        280
       ]
     },
     {
@@ -177,13 +159,13 @@
         "includeOtherFields": true,
         "options": {}
       },
-      "id": "4a14b34b-ecb6-4d43-836c-ceec97f626cd",
+      "id": "5b62922b-f4eb-4726-af52-51bbde561381",
       "name": "Edit Fields1",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2720,
-        420
+        2980,
+        60
       ]
     },
     {
@@ -202,33 +184,27 @@
           ]
         }
       },
-      "id": "b9f99ec8-96df-45ff-9d41-c78328889a1e",
+      "id": "fb596d98-907c-4762-8ef4-9930e49ec057",
       "name": "Supabase1",
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2920,
-        640
-      ],
-      "credentials": {
-        "supabaseApi": {
-          "id": "hOLIm3Jeg9JcG616",
-          "name": "Prod Supabase account"
-        }
-      }
+        3180,
+        280
+      ]
     },
     {
       "parameters": {
         "aggregate": "aggregateAllItemData",
         "options": {}
       },
-      "id": "df095f3f-9691-419e-aca6-c43eabe14de8",
+      "id": "843b7b4f-a009-4212-8f63-a713e5e6801e",
       "name": "Aggregate1",
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        2520,
-        640
+        2780,
+        280
       ]
     },
     {
@@ -245,13 +221,13 @@
           }
         }
       },
-      "id": "59550b57-845f-49ef-80c8-b14eae1d2d5a",
+      "id": "8fe7f063-a6f6-4fe5-b976-745ed0ad42d1",
       "name": "Respond to Webhook",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        3320,
-        660
+        3580,
+        300
       ]
     },
     {
@@ -259,13 +235,13 @@
         "promptType": "define",
         "text": "=Here is a n8n workflow descriptions:\n\n{{ $json.document.pageContent }}\n\nYour job is to identify if the workflow is relevant to the user query which is:\n\n{{ $('Edit Fields').first().json.query }}\n\nOutput the workflow ID if the workflow relates to the user query. Otherwise, output -1. ONLY ever output a number, nothing else. You will always output the workflow ID or -1.\n\nThe workflow ID is: {{ $json.document.metadata.workflow_id }}\n\nThe workflow ID or -1 if the workflow doesn't relate to the user query:"
       },
-      "id": "4c49b44d-b707-41ef-8577-4939df2bc2db",
+      "id": "fa3f17d5-12d9-4346-80e1-0a6b3631ff90",
       "name": "Basic LLM Chain",
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.4,
       "position": [
-        1360,
-        400
+        1620,
+        40
       ]
     },
     {
@@ -288,13 +264,13 @@
         },
         "options": {}
       },
-      "id": "416ee827-a9a5-4461-8b77-798b7ecaea50",
+      "id": "93678f71-6cb0-4d20-8d35-7d38fec18216",
       "name": "Edit Fields2",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3120,
-        420
+        3380,
+        60
       ]
     },
     {
@@ -313,20 +289,14 @@
           ]
         }
       },
-      "id": "79873137-cbdb-4c90-9dc6-adbcb516f6de",
+      "id": "29bd82b3-3c9c-4e51-89b8-d99af0af90d4",
       "name": "Supabase2",
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        840,
-        420
-      ],
-      "credentials": {
-        "supabaseApi": {
-          "id": "hOLIm3Jeg9JcG616",
-          "name": "Prod Supabase account"
-        }
-      }
+        1100,
+        60
+      ]
     },
     {
       "parameters": {
@@ -343,35 +313,29 @@
           "queryName": "match_summaries"
         }
       },
-      "id": "ee10e7a4-da98-4775-b641-310ce79110a4",
+      "id": "4edd94f4-1e37-4be4-96b1-84fe89448b86",
       "name": "Supabase Vector Store",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1,
       "position": [
-        1020,
-        640
-      ],
-      "credentials": {
-        "supabaseApi": {
-          "id": "hOLIm3Jeg9JcG616",
-          "name": "Prod Supabase account"
-        }
-      }
+        1280,
+        280
+      ]
     },
     {
       "parameters": {
-        "content": "## The n8n Expert Agent helps you find and understand n8n automation workflows. Simply describe what you're trying to automate, and the agent will recommend relevant workflows to help you get started.\n\nAuthor: [Cole Medin](https://www.youtube.com/@ColeMedin)\n\n## For example:\n\n### User: \"I need to automatically post tweets when new blog posts are published\"\n### Agent: Here are some recommended workflows to help you get started:\n- WordPress to Twitter Auto-Poster\n- Blog RSS Feed to Social Media\n- Content Distribution Workflow\nThe agent analyzes your request and provides matching workflows from its knowledge base, along with explanations of how to implement and customize them for your needs.",
+        "content": "## The n8n Expert Agent helps you find and understand n8n automation workflows. Simply describe what you're trying to automate, and the agent will recommend relevant workflows to help you get started.\n\nDeveloped by [LIAICHI MUSTAPHA](https://www.linkedin.com/in/liaichi-mustapha/)\ncredits : [Cole Medin](https://www.youtube.com/@ColeMedin)\n\n## For example:\n\n### User: \"I need to automatically post tweets when new blog posts are published\"\n### Agent: Here are some recommended workflows to help you get started:\n- WordPress to Twitter Auto-Poster\n- Blog RSS Feed to Social Media\n- Content Distribution Workflow\nThe agent analyzes your request and provides matching workflows from its knowledge base, along with explanations of how to implement and customize them for your needs.",
         "height": 502.790697674419,
         "width": 651.0139534883727,
         "color": 6
       },
-      "id": "1ac32a2f-f121-4b7c-bfb6-b90056c9d6bd",
+      "id": "205c9cb5-695e-41c1-8c55-ac5fed8f02f3",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -260,
-        360
+        0,
+        0
       ]
     },
     {
@@ -382,21 +346,15 @@
         "responseMode": "responseNode",
         "options": {}
       },
-      "id": "90236e22-385a-49ba-8d5c-263a60a82f33",
+      "id": "5f87868f-f601-463d-bcb9-35155d8df684",
       "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        460,
-        460
+        720,
+        100
       ],
-      "webhookId": "ba5e9235-01af-47f8-9f72-29df862bfa0f",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "o5akNgXQQR74Sezh",
-          "name": "Header Auth account"
-        }
-      }
+      "webhookId": "ba5e9235-01af-47f8-9f72-29df862bfa0f"
     },
     {
       "parameters": {
@@ -404,13 +362,13 @@
         "height": 111.41953488372111,
         "width": 648.3795348837208
       },
-      "id": "934e70b5-3825-4bb7-91e3-0fa786bf88e8",
+      "id": "aec780f7-b0de-4e3e-9e06-e7b76102cf18",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -260,
-        900
+        0,
+        540
       ]
     }
   ],
@@ -582,22 +540,15 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "9cb778c5-1d8e-4af0-a6fd-8107eb8069ef",
+  "versionId": "9ee594d7-21a6-4d0f-9720-97fddb3d93a1",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "f65a08c0adc90a3cde2c633d24c6daecde3817033b75588ee10a781b0b7aa3f5"
+    "instanceId": "1b6894e145a1ac74bf024b31463fc7e24c322ca67519ef086e66f19d1d70e526"
   },
-  "id": "e1rZ3MNMH9g4i1Yw",
-  "tags": [
-    {
-      "createdAt": "2024-12-09T14:35:20.507Z",
-      "updatedAt": "2024-12-09T14:35:20.507Z",
-      "id": "wBUwbX8AS8QmBHOC",
-      "name": "studio-prod"
-    }
-  ]
+  "id": "mDMlfd6N1r4oCrQ6",
+  "tags": []
 }
